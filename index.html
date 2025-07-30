@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get your premium access keys instantly. Exclusive keys for VIP members.">
+    <meta name="keywords" content="premium key, vip access, exclusive key, getkey, api key">
+    <meta property="og:title" content="GetKey - Premium Access Keys">
+    <meta property="og:description" content="Instant delivery of premium access keys for exclusive services.">
+    <meta property="og:image" content="https://example.com/getkey-og-image.jpg">
+    <title>GetKey • Loading...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --accent: #ff7e5f;
+            --dark: #0f0f1a;
+            --darker: #0a0a12;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .glass-card {
+            background: rgba(15, 15, 26, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            z-index: -1;
+            filter: blur(15px);
+            opacity: 0.7;
+            animation: glow-pulse 3s infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 0.8; }
+        }
+        
+        .key-display {
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(110, 69, 226, 0.7);
+        }
+        
+        .btn-copy {
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+        }
+        
+        .btn-copy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.4);
+        }
+        
+        .btn-copy:active {
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--darker);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s ease;
+                z-index: 1000;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgba(15, 15, 26, 0.9);
+            border-left: 4px solid var(--secondary);
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Header -->
+    <header class="py-6 px-4 sm:px-8 lg:px-16">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                    </svg>
+                </div>
+                <h1 class="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">GetKey<span class="text-white">.pro</span></h1>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="flex space-x-8 items-center">
+                    <li><a href="#" class="nav-link text-white hover:text-purple-300">Home</a></li>
+                    <li><a href="#" class="nav-link text-white hover:text-purple-300">Features</a></li>
+                    <li><a href="#" class="nav-link text-white hover:text-purple-300">Pricing</a></li>
+                    <li><a href="#" class="nav-link text-white hover:text-purple-300">API</a></li>
+                    <li><a href="#" class="px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:shadow-lg transition-all">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="min-h-[70vh] flex items-center justify-center px-4 py-12 sm:py-24">
+        <div class="container mx-auto text-center">
+            <div id="keyContainer" class="glass-card glow-effect max-w-2xl mx-auto p-8 sm:p-12 mb-8 fade-in">
+                <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-transparent bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text">Your Premium Access Key</h2>
+                <div id="keyDisplay" class="key-display text-3xl sm:text-4xl font-bold mb-8 py-4 px-6 bg-gray-900 rounded-lg inline-block"></div>
+                <button id="copyBtn" class="btn-copy px-6 py-3 rounded-full text-white font-medium flex items-center mx-auto space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                    </svg>
+                    <span>Copy Key</span>
+                </button>
+            </div>
+            
+            <div class="max-w-3xl mx-auto glass-card p-8 fade-in">
+                <h3 class="text-xl font-semibold mb-4">How to use your key</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                    <div class="p-4 rounded-lg bg-gray-900/50">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-medium mb-2">API Integration</h4>
+                        <p class="text-sm text-gray-300">Use the key to authenticate with our premium API endpoints.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-900/50">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-medium mb-2">Premium Features</h4>
+                        <p class="text-sm text-gray-300">Unlock all premium features in your dashboard.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-900/50">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-medium mb-2">Priority Support</h4>
+                        <p class="text-sm text-gray-300">Get 24/7 priority support with your premium key.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <div class="flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Key copied to clipboard!</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-gray-800/50">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400">© 2025 <a href="https://DanhMucCode.site" class="hover:text-purple-400">DanhMucCode.site</a> | Contact: <a href="#" class="hover:text-blue-400">Zalo</a> / <a href="#" class="hover:text-blue-400">Telegram</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Update title with current time
+        function updateTitleTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.title = `GetKey • ${hours}:${minutes}:${seconds}`;
+        }
+        
+        setInterval(updateTitleTime, 1000);
+        updateTitleTime(); // Initial call
+        
+        // Get key from URL parameters
+        function getKeyFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('key');
+        }
+        
+        // Display key or error message
+        function displayKey() {
+            const key = getKeyFromURL();
+            const keyDisplay = document.getElementById('keyDisplay');
+            const keyContainer = document.getElementById('keyContainer');
+            
+            if (key) {
+                keyDisplay.textContent = key;
+            } else {
+                keyContainer.innerHTML = `
+                    <div class="text-center py-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-red-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <h3 class="text-xl font-semibold mb-2">Key Not Found</h3>
+                        <p class="text-gray-300">Please check your URL and try again.</p>
+                        <p class="text-sm text-gray-400 mt-4">Example: <code class="bg-gray-800 px-2 py-1 rounded">?key=VIP123</code></p>
+                    </div>
+                `;
+                document.getElementById('copyBtn').style.display = 'none';
+            }
+        }
+        
+        // Copy key to clipboard
+        function setupCopyButton() {
+            const copyBtn = document.getElementById('copyBtn');
+            const notification = document.getElementById('notification');
+            
+            copyBtn.addEventListener('click', () => {
+                const key = getKeyFromURL();
+                if (key) {
+                    navigator.clipboard.writeText(key).then(() => {
+                        // Show notification
+                        notification.classList.add('show');
+                        
+                        // Trigger confetti
+                        confetti({
+                            particleCount: 100,
+                            spread: 70,
+                            origin: { y: 0.6 },
+                            colors: ['#6e45e2', '#88d3ce', '#ff7e5f']
+                        });
+                        
+                        // Hide notification after 3 seconds
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                        }, 3000);
+                    });
+                }
+            });
+        }
+        
+        // Mobile menu toggle
+        function setupMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            displayKey();
+            setupCopyButton();
+            setupMobileMenu();
+        });
+    </script>
+</body>
+  </html>
